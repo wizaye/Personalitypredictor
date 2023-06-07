@@ -1,4 +1,5 @@
-from flask import Flask, request, jsonify
+# from flask import Flask, request, jsonify
+from flask import Flask,request,jsonify
 import numpy as np
 import pickle as pkl
 
@@ -9,6 +10,10 @@ def submit_form():
     data = request.json
     # Process the form data
     gender = data.get('gender')
+    if(gender=='Male' or gender=='male'):
+        gender=1
+    elif (gender=='Female' or gender=='female'):
+        gender=0
     age = data.get('age')
     openness = data.get('openness')
     neuroticism = data.get('neuroticism')
@@ -31,4 +36,4 @@ def submit_form():
     return response
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=5000)
+    app.run(debug=True)
